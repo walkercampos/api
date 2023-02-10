@@ -27,9 +27,12 @@ public class Medico {
     // é utilizada para informar que a geração do valor do identificador único da entidade será gerenciada pelo
     // provedor de persistência. Essa anotação deve ser adicionada logo após a anotação @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     private long id;
     private String nome;
     private String email;
+
+    private String telefone;
     private String crm;
     //Especifica que uma propriedade ou campo persistente deve ser mantido como um tipo enume
     @Enumerated(EnumType.STRING)
@@ -42,9 +45,10 @@ public class Medico {
     public Medico(DadosCadastroMedico dados) {
         this.nome = dados.nome();
         this.email = dados.email();
+        this.telefone = dados.telefone();
         this.crm = dados.crm();
-        this.endereco = new Endereco(dados.endereco());
         this.especialidade = dados.especialidade();
+        this.endereco = new Endereco(dados.endereco());
 
 
     }
